@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-        $nome = "Vinicius";
-        $idade =  16;
-        $profissao = "Desenvolvimento Web";
-    return view('welcome', ['nome' => $nome, 'idade' => $idade, 'profissao' => $profissao]);
+    return view('welcome');
 });
 
 Route::get('/contato', function () {
     return view('contact');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
