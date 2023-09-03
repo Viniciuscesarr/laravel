@@ -39,3 +39,5 @@ Route::get('/contato', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/clientes', [App\Http\Controllers\ClientesController::class, 'index'])->name('clientes');
