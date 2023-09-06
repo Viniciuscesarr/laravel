@@ -12,10 +12,13 @@
 <body>
 
 <header>
+
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 logo">
+                <a href="{{route('home')}}">
                 <img src="{{ asset('images/logo-bar2.png') }}" alt="Logo">
+                </a>
             </div>
             <div class="col-md-3">
                 <!-- Adicione o ícone de menu (sanduíche) aqui, se necessário -->
@@ -65,49 +68,16 @@
     </div>
 </header>
 
-<main class="container mt-4">
-    <div>
-        <h1>Acesso rápido</h1>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <section class="sections">
-                <span id="clients" class="material-icons-outlined text-primary">
-                    group
-                </span>
-                <h2>Clientes</h2>
-            </section>
-        </div>
-        <div class="col-md-3">
-            <section class="sections">
-                <span id="inventory" class="material-icons-outlined text-primary">
-                    inventory_2
-                </span>
-                <h2>Estoque</h2>
-            </section>
-        </div>
-        <div class="col-md-3">
-            <section class="sections">
-                <span id="sales" class="material-icons-outlined text-primary">
-                    payments
-                </span>
-                <h2>Vendas</h2>
-            </section>
-        </div>
-        <div class="col-md-3">
-            <section class="sections">
-                <span id="pending" class="material-icons-outlined text-primary">
-                    receipt
-                </span>
-                <h2>Pendências</h2>
-            </section>
-        </div>
-    </div>
-</main>
+<main class="py-4">
+            @yield('content')
+        </main>
+    
+    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Adicione os links para seus arquivos JavaScript aqui -->
+    @yield('scripts')
 </body>
 </html>
 </html>

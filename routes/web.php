@@ -18,26 +18,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/teste', function () {
-    echo "<pre>";
-
-    Empresa::where('razao_social','Dyemerson')->update([
-        'razao_social' => 'Ayla'
-    ]);
-
-    $teste = Empresa::all();
-
-    print_r($teste);
-
-});
-
-
 Route::get('/contato', function () {
     return view('contact');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+    // Rotas que requerem autenticação
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/clientes', [App\Http\Controllers\ClientesController::class, 'index'])->name('clientes');
+    Route::prefix('clientes')->group(function () {
+        Route::get('/', [App\Http\Controllers\ClientesController::class, 'index'])->name('clientes');
+        Route::get('/data', [App\Http\Controllers\ClientesController::class, 'data'])->name('clientes.data');
+        Route::get('/create', [App\Http\Controllers\ClientesController::class, 'create'])->name('clientes.create');
+        Route::post('/store', [App\Http\Controllers\ClientesController::class, 'store'])->name('clientes.store');
+    });
+});

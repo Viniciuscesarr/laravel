@@ -15,8 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property string $nome
- * @property string $endereco
- * @property string $apelido
+ * @property string|null $endereco
+ * @property string|null $apelido
+ * @property string|null $telefone
  * @property int $empresa_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -38,6 +39,7 @@ class Cliente extends Model
 		'nome',
 		'endereco',
 		'apelido',
+		'telefone',
 		'empresa_id'
 	];
 

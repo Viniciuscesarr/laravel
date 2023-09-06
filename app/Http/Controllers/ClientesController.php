@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ClientesController extends Controller
 {
@@ -13,9 +15,24 @@ class ClientesController extends Controller
      */
     public function index()
     {
-       $clientes = Cliente::where('empresa_id', Auth::user()->empresa_id)->get();
+        return view('clientes.index');
+    }
 
-       return view('clientes.index', compact($clientes));
+    public function data(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Cliente::select(['nome', 'apelido', 'telefone','endereco']);
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+       
+                            $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Editar</a>';
+      
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
     }
 
     /**
@@ -23,7 +40,7 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**
@@ -31,7 +48,29 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nome' => 'required|max:255|unique:cliente,nome'
+        ]);
+    
+            try {
+                Cliente::create([
+                    'empresa_id' => Auth::user()->empresa_id,
+                    'nome' => $validatedData['nome'],
+                    'apelido' => $request->apelido,
+                    'telefone' => $request->telefone,
+                    'endereco' => $request->endereco,
+                ]);
+
+                // Defina uma mensagem de sucesso na sessão
+                Session::flash('success', 'Cliente cadastrado com sucesso.');
+            } catch (\Exception $e) {
+                // Se ocorrer um erro, defina uma mensagem de erro na sessão
+                Session::flash('error', 'Erro ao cadastrar cliente: ' . $e->getMessage());
+            }
+
+            // Redirecione de volta à rota "clientes"
+            return redirect()->route('clientes');
+        
     }
 
     /**
