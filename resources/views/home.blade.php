@@ -2,37 +2,39 @@
 
 @section('content')
 <main class="container mt-4">
-    <h1 class="text-center">Acesso Rápido</h1>
+    <div>
+        <h1>Acesso rápido</h1>
+    </div>
     <div class="row">
         <div class="col-md-3">
-            <section class="quick-access">
-                <a href="{{ route('clientes') }}">
-                    <span class="material-icons-outlined text-primary">
-                        group
-                    </span>
-                    <h2>Clientes</h2>
+            <section class="sections">
+                <a href="{{route('clientes')}}">
+                <span id="clients" class="material-icons-outlined text-primary">
+                    group
+                </span>
+                <h2>Clientes</h2>
                 </a>
             </section>
         </div>
         <div class="col-md-3">
-            <section class="quick-access">
-                <span class="material-icons-outlined text-primary">
+            <section class="sections">
+                <span id="inventory" class="material-icons-outlined text-primary">
                     inventory_2
                 </span>
                 <h2>Estoque</h2>
             </section>
         </div>
         <div class="col-md-3">
-            <section class="quick-access">
-                <span class="material-icons-outlined text-primary">
+            <section class="sections">
+                <span id="sales" class="material-icons-outlined text-primary">
                     payments
                 </span>
                 <h2>Vendas</h2>
             </section>
         </div>
         <div class="col-md-3">
-            <section class="quick-access">
-                <span class="material-icons-outlined text-primary">
+            <section class="sections">
+                <span id="pending" class="material-icons-outlined text-primary">
                     receipt
                 </span>
                 <h2>Pendências</h2>
