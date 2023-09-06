@@ -46,5 +46,28 @@ Para criar uma nova página no projeto:
 
 Se você precisar adicionar JavaScript a uma nova página, pode encontrar um exemplo em `resources/views/clientes/index.blade.php` .
 
+Quando iniciar as alterações, crie uma branch para elas:
+
+### Quando a branch ainda não estiver criada:
+
+```bash
+git checkout main
+git checkout -b minha_tarefa
+git push origin minha_tarefa
+```
+
+Quando a branch já estiver criada:
+
+```bash
+git checkout minha_tarefa
+```
+
+Depois de trabalhar, faça o merge da sua branch com a `main`:
+```bash
+git push 
+git checkout main 
+git merge origin/minha_tarefa
+```
+
 ---
 
