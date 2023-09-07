@@ -18,26 +18,32 @@
         </div>
         <div class="col-md-3">
             <section class="sections">
-                <span id="inventory" class="material-icons-outlined text-primary">
-                    inventory_2
-                </span>
-                <h2>Estoque</h2>
+                <a href="#">
+                    <span id="inventory" class="material-icons-outlined text-primary">
+                        inventory_2
+                    </span>
+                    <h2>Estoque</h2>
+                </a>
             </section>
         </div>
         <div class="col-md-3">
             <section class="sections">
-                <span id="sales" class="material-icons-outlined text-primary">
-                    payments
-                </span>
-                <h2>Vendas</h2>
+                <a href="#">
+                    <span id="sales" class="material-icons-outlined text-primary">
+                        payments
+                    </span>
+                    <h2>Vendas</h2>
+                </a>
             </section>
         </div>
         <div class="col-md-3">
-            <section class="sections">
-                <span id="pending" class="material-icons-outlined text-primary">
-                    receipt
-                </span>
-                <h2>Pendências</h2>
+            <a href="#">
+                <section class="sections">
+                    <span id="pending" class="material-icons-outlined text-primary">
+                        receipt
+                    </span>
+                    <h2>Pendências</h2>
+            </a>
             </section>
         </div>
     </div>
