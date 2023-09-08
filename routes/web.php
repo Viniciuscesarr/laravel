@@ -56,34 +56,4 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store', [App\Http\Controllers\ClientesController::class, 'store'])->name('clientes.store');
         
     });
-
-    Route::prefix('estoque')->group(function (){
-        Route::get('/', function () {
-            return view('estoque.index');
-        });
-        Route::get('create', function () {
-            return view('estoque.create');
-        });
-    });
-
-    Route::prefix('vendas')->group(function (){
-        Route::get('/', function () {
-            return view('vendas.index');
-        });
-        Route::get('create', function () {
-            return view('vendas.create');
-        });
-    });
-
-    Route::prefix('pendencias')->group(function (){
-        Route::get('/', function () {
-            return view('pendencias.index');
-        });
-        Route::get('create', function () {
-            return view('pendencias.create');
-        });
-    });
-
-
 });
-    
