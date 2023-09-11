@@ -48,7 +48,10 @@ h1 {
     border: 1px solid #ddd;
     padding: 20px;
     text-align: center;
-    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.542);
+    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.414);
+}
+.sections:hover{
+    color: darkblue;
 }
 
 .sections h2 {
