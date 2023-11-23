@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\ClientesRequest;
 
 class ClientesController extends Controller
 {
@@ -21,12 +22,14 @@ class ClientesController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $data = Cliente::select(['nome', 'apelido', 'telefone','endereco']);
+            $data = Cliente::select(['nome', 'apelido', 'telefone','endereco', 'id']);
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-       
-                            $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Editar</a>';
+                     
+                            $btn = '<a href="'.route('clientes.edit',['id' => $row->id]).'" class="edit btn btn-primary btn-sm" target="_blank"> Editar</a>';
+                            $btn.= '<a href="'.route('clientes.delete',['id' => $row->id]).'" class="edit btn btn-primary btn-sm"> Deletar</a>';
+
       
                             return $btn;
                     })
@@ -78,23 +81,42 @@ class ClientesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        //
+       $cliente =  Cliente::findOrFail($id); 
+
+       return view('clientes.edit', compact('cliente'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ClientesRequest $request, string $id)
     {
-        //
+        try{
+
+            Cliente::findOrFail($id)->update(
+                [
+                    'nome' => $request->nome,
+                    'apelido' => $request->apelido,
+                    'endereco' => $request->endereco,
+                    'telefone' => $request->telefone,
+                ]
+            );
+            Session::flash('success', 'Cliente editado com sucesso.');
+            
+            return redirect()->back();
+
+        } catch (\Exception $e){
+            Session::flash('error', 'Erro ao atualizar cliente: ' . $e->getMessage());
+        }
+      
     }
 
     /**
@@ -102,6 +124,9 @@ class ClientesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        Cliente::findOrFail($id)->delete();
+        Session::flash('success', 'Cliente deletado com sucesso.');
+        return redirect()->back();
     }
 }

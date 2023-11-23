@@ -31,14 +31,14 @@ Route::middleware(['auth'])->group(function () {
     /*
     / exemplo com prefixo "estoque":  tipo na url chama assim: http://localhost/estoque e http://localhost/estoque/create
     */
-    // Route::prefix('estoque')->group(function () {
-    //     Route::get('/', function () {
-    //         return view('estoque.index');
-    //     });
-    //     Route::get('create', function () {
-    //         return view('estoque.create');
-    //     });
-    // });
+    Route::prefix('estoque')->group(function () {
+        Route::get('/', function () {
+            return view('estoque.index');
+        });
+        Route::get('create', function () {
+            return view('estoque.create');
+        });
+    });
     /*
     / exemplo sem prefixo":  tipo na url chama assim:  http://localhost/estoque e http://localhost/estoque/create
     */
@@ -54,6 +54,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data', [App\Http\Controllers\ClientesController::class, 'data'])->name('clientes.data');
         Route::get('/create', [App\Http\Controllers\ClientesController::class, 'create'])->name('clientes.create');
         Route::post('/store', [App\Http\Controllers\ClientesController::class, 'store'])->name('clientes.store');
+        Route::get('/edit/{id}', [App\Http\Controllers\ClientesController::class, 'edit'])->name('clientes.edit');
+        Route::post('/update/{id}', [App\Http\Controllers\ClientesController::class, 'update'])->name('clientes.update');
+        Route::get('/delete/{id}', [App\Http\Controllers\ClientesController::class, 'destroy'])->name('clientes.delete');
         
     });
     Route::prefix('estoque')->group(function (){

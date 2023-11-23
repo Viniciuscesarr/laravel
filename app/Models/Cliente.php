@@ -32,10 +32,12 @@ class Cliente extends Model
 	protected $table = 'cliente';
 
 	protected $casts = [
-		'empresa_id' => 'int'
+		'empresa_id' => 'int',
+		'id' => 'int',
 	];
 
 	protected $fillable = [
+		'id',
 		'nome',
 		'endereco',
 		'apelido',
